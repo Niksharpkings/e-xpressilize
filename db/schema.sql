@@ -1,7 +1,6 @@
--- DROP DATABASE
-DROP DATABASE IF EXISTS expressilize_db;
--- CREATE DATABASE
+DROP DATABASE IF EXISTS ecommerce_db;
 CREATE DATABASE expressilize_db;
--- USE DATABASE
 USE expressilize_db;
+
+
 
