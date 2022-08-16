@@ -90,3 +90,7 @@ git add -A
 git commit -m "connect to jawsdb"
 git push origin main
 git push heroku main 
+
+heroku builds:cache:purge --confirm polar-ravine-89380heroku builds:cache:purge --confirm polar-ravine-89380
+
+heroku addons:create --remote heroku-22 jawsdb
