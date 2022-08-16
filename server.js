@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
-// const schema = require('./db/schema.sql');
+
 // import sequelize connection
 const sequelize = require('./config/connection'); // * this is the connection to the database
 const seedAll = require('./seeds/index');
@@ -17,7 +17,7 @@ app.use(routes); // use the routes module (./routes)
  // * this is the connection to the database
     sequelize
       .sync(
-        { force: 'false' } // use the .env file to change the value for security and quickness. if the value is set to true, the table will be dropped and re-created
+        { force: 'true' } // use the .env file to change the value for security and quickness. if the value is set to true, the table will be dropped and re-created
       )
       .then(() => {
         app
