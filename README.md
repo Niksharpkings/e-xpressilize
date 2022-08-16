@@ -85,3 +85,7 @@ A UCLAx Object-Relational Mapping (ORM) Challenge: E-commerce Back End using Exp
 
   // Fourth We Will run the server, but before you do make sure to change  DROP_IT: 'false' in the .env file.
 = $ <code> npm run start <code>
+
+git add -A
+git commit -m "connect to jawsdb"
+git push heroku main
