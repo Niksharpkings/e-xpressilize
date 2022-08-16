@@ -1,21 +1,21 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize'); // import the sequelize constructor from the library and the data types from the library (DataTypes) to use in our models (Model) (this is needed for the routes to work)
 
-const sequelize = require('../config/connection');
+const sequelize = require('../config/connection'); // import the sequelize constructor from the library (using JAWSDB_URL) if using JAWSDB_URL (Heroku)
 
-class Category extends Model {}
+class Category extends Model {} // create a new class that extends the Model class from the sequelize library
 
-Category.init(
+Category.init( // initialize the Category class with the sequelize constructor and the data types from the library (DataTypes) to use in our models (Model) (this is needed for the routes to work)
   {
-    // define columns
+    // define columns in the table
     id: { // id is the primary key
-      type: DataTypes.INTEGER, // type is an integer
-      allowNull: false, // doesn't allow null values
-      primaryKey: true, // set as primary key
-      autoIncrement: true // uses auto increment
+      type: DataTypes.INTEGER, // type is an integer (INTEGER)
+      allowNull: false, // doesn't allow null values (NOT NULL)
+      primaryKey: true, // set as primary key (PRIMARY KEY)
+      autoIncrement: true // uses auto increment (AUTO_INCREMENT)
     },
-    category_name: { // category_name is the name of the category
-      type: DataTypes.STRING, // type is a string
-      allowNull: false, // doesn't allow null values
+    category_name: { // category_name is the name of the category (VARCHAR)
+      type: DataTypes.STRING, // type is a string (STRING)
+      allowNull: false, // doesn't allow null values (NOT NULL)
     },
   },
   {

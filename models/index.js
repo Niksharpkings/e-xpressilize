@@ -5,49 +5,38 @@ const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
 
 // Products belongsTo Category
-Product
+Product // Product is the model name and it belongs to table name Category
   .belongsTo(Category,
   {
-    foreignKey: 'category_id'
+    foreignKey: 'category_id' // foreign key is category_id (the id of the category) in the product table (the table that belongs to the product model)
   }
-);
+)
 
 // Categories have many Products as a reverse association
-Category
+Category // Category is the model name and it has "many" products (as a reverse association) in the product table (the table that belongs to the product model)
   .hasMany(Product,
   {
-  foreignKey: 'category_id'
+  foreignKey: 'category_id' // foreign key is category_id (the id of the category) in the product table (the table that belongs to the product model)
   }
-);
-// Category
-//   .belongsToMany(Product,
-//   {
-//     through: ProductTag
-//   });
-// Product
-//   .belongsToMany(Category,
-//     {
-//       through: ProductTag
-//     });
+)
 
 // Products belongToMany Tags (through ProductTag)
-Product
-  .belongsToMany(Tag,
+Product // Product is the model name and it "belongs to many" tags (through the productTag table) in the Product table (the table that belongs to the Product model)
+  .belongsToMany(Tag, // Tag is the model name and it "belongs to many" Products (through the product_tag table) in the tag table (the table that belongs to the tag model)
   {
-    through: ProductTag,
-    as: 'tags',
-    foreignKey: 'product_id'
-  });
+    through: ProductTag, // The sequelize through model is ProductTag.
+    as: 'tags', // The table that connects the product and tag models through the product_tag table.
+    foreignKey: 'product_id' //  The table that belongs to the productTag model foreignKey is product_id (the id of the product) 
+  })
 
 // Tags belongToMany Products (through ProductTag)
-Tag
-  .belongsToMany(Product,
+Tag // Tag is the model name and it "belongs to many" Products (through the productTag table) in the tag table (the table that belongs to the tag model)
+  .belongsToMany(Product,  // Product is the model name and it "belongs to many" tags (through the product_tag table) in the product table (the table that belongs to the product model)
   {
-    through: ProductTag,
-    as: 'products',
-    foreignKey: 'tag_id'
-  });
-
+    through: ProductTag, // The sequelize through model is ProductTag.
+    as: 'products', // The table that connects the product and tag models through the product_tag table.
+    foreignKey: 'tag_id' // The table that belongs to the productTag model foreignKey is tag_id (the id of the tag)
+  })
 
 module.exports = {
   Product,

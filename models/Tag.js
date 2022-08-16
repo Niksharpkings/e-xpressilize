@@ -1,24 +1,21 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require('sequelize');  // import the sequelize constructor from the library and the data types from the library (DataTypes) to use in our models (Model) (this is needed for the routes to work)
 
-const sequelize = require("../config/connection");
+const sequelize = require('../config/connection.js'); // import the sequelize constructor from the library (using JAWSDB_URL) if using JAWSDB_URL (Heroku)
 
 class Tag extends Model {}
 
-Tag.init(
+Tag.init( // initialize the Tag class with the sequelize constructor and the data types from the library (DataTypes) to use in our models (Model) (this is needed for the routes to work)
   {
     // define columns
-    id: {
-      // id is the primary key
-      type: DataTypes.INTEGER, // type is an integer
-      allowNull: false, // doesn't allow null values
-      primaryKey: true, // set as primary key
-      autoIncrement: true, // uses auto increment
+    id: {  // id is the primary key
+      type: DataTypes.INTEGER, // type is an integer (INTEGER)
+      allowNull: false, // doesn't allow null values (NOT NULL)
+      primaryKey: true, // set as primary key (PRIMARY KEY)
+      autoIncrement: true // uses auto increment (AUTO_INCREMENT)
     },
-    tag_name: {
-      // product_id is the id of the product
-      type: DataTypes.INTEGER, // type is an integer
-      allowNull: false, // doesn't allow null values
-    },
+    tag_name: { // tag_name is the name of the tag (VARCHAR)
+      type: DataTypes.STRING // type is a string (STRING)
+    }
   },
   {
     sequelize, // pass in our imported sequelize connection (the direct connection to our database)

@@ -1,11 +1,12 @@
 {
   "name": "e-xpressilize",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Object-Relational Mapping (ORM) Challenge: E-commerce Back End API Express.js, Sequelize, and MYSQL, Insomnia",
   "main": "server.js",
   "scripts": {
     "test": "Jest",
-    "start": "node server.js"
+    "start": "node server.js",
+    "seeds": "node seeds/index.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,9 @@
     "url": "https://github.com/Niksharpkings/e-xpressilize/issues"
   },
   "homepage": "https://github.com/Niksharpkings/e-xpressilize#readme",
+  "devDependencies": {
+    "nodemon": "2.0.19"
+  },
   "dependencies": {
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
