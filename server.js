@@ -1,9 +1,8 @@
-const routes = require('./routes');
 const express = require('express');
+const routes = require('./routes');
 // import sequelize connection
 const sequelize = require('./config/connection'); // * this is the connection to the database
 
-const { DROP_TOGGLE } = process.env; //! this is the variable that determines if the table will be dropped or not
 const app = express(); // create an instance of express
 const PORT = process.env.PORT || 3001; // set the port to 3001 if not specified in the .env file or process.env.PORT (Heroku)
 
