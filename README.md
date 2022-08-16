@@ -88,4 +88,5 @@ A UCLAx Object-Relational Mapping (ORM) Challenge: E-commerce Back End using Exp
 
 git add -A
 git commit -m "connect to jawsdb"
+git push origin main
 git push heroku main 
