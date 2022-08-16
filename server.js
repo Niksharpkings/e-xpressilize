@@ -1,10 +1,9 @@
-const express = require('express');
 const routes = require('./routes');
-
+const express = require('express');
 // import sequelize connection
 const sequelize = require('./config/connection'); // * this is the connection to the database
-const seedAll = require('./seeds/index');
-//const { DROP_TOGGLE } = process.env; //! this is the variable that determines if the table will be dropped or not
+
+const { DROP_TOGGLE } = process.env; //! this is the variable that determines if the table will be dropped or not
 const app = express(); // create an instance of express
 const PORT = process.env.PORT || 3001; // set the port to 3001 if not specified in the .env file or process.env.PORT (Heroku)
 
@@ -17,7 +16,7 @@ app.use(routes); // use the routes module (./routes)
  // * this is the connection to the database
     sequelize
       .sync(
-        { force: 'true' } // use the .env file to change the value for security and quickness. if the value is set to true, the table will be dropped and re-created
+        { force: DROP_TOGGLE } // use the .env file to change the value for security and quickness. if the value is set to true, the table will be dropped and re-created
       )
       .then(() => {
         app
