@@ -129,3 +129,6 @@ $ npm run start
 
 https://drive.google.com/file/d/1KpYQwZIVSEjnEteZM683_LI623qgHHhc/view?usp=sharing
 
+##TODO##
+need to fix PUT products by id
+and delete category by id
