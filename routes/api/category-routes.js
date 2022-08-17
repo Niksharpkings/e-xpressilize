@@ -1,5 +1,5 @@
-const router = require('express').Router();
-const { Category, Product } = require('../../models');
+const router = require("express").Router();
+const { Category, Product } = require("../../models");
 /* Using the naming convention along with the use of the HTTP methods
 Representational State Transfer API architectural pattern called REST or RESTful APIs (https://restfulapi.net/).
 Name the endpoints in a way that describes the data you're interfacing with.
@@ -10,128 +10,118 @@ Use the proper HTTP status codes like 400, 404, and 500 to indicate errors in a 
 */
 // The `/api/categories` endpoint
 
-
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   // find all categories
   // be sure to include its associated Products
-  Category // get all categories from the Category model class and include the Product model class
-    .findAll({ //include: [Product] })
-    include: [
-      {
-        model: Product, // include the products table
-        attributes: [ // include the attributes of the products table
-          'id', // include the id of the product
-          'product_name', // include the product name
-          'price', // include the price of the product
-          'stock', // include the stock of the product
-          'category_id' // include the category_id of the product
-        ]
-      }
-    ]
+  Category.findAll({
+    // get all categories from the Category model class and include the Product model class
+    attributes: ["id", "category_name"],
+    include: {
+      model: Product,
+      attributes: ["id", "product_name", "price", "stock", "category_id"],
+    },
   })
-  .then(categoryGetData => res.json(categoryGetData)) // send the data back to the client as JSON in the response body and end the response
-  .catch(err =>{ // if there is an error
-    console.warn(err, 'Status 500 code, theres an error in the JSON (category-routes GET "/"'); // log the error to the console
-    res
-      .status(500)
-      .json(err); // send a 500 status code and the error as JSON in the response body and end the response
-  })
+    .then((categoryGetData) => res.json(categoryGetData)) // send the data back to the client as JSON in the response body and end the response
+    .catch((err) => {
+      // if there is an error
+      console.warn(
+        err,
+        'Status 500 code, theres an error in the JSON (category-routes GET)'
+      ); // log the error to the console
+      res.status(500).json(err); // send a 500 status code and the error as JSON in the response body and end the response
+    });
 });
 
-router.get('/:id', (req, res) => {
+router.get("/:id", (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
   Category.findOne({
     where: {
-      id: req.params.id // find the category with the id of the req.params.id value (the id of the category)
+      id: req.params.id, // find the category with the id of the req.params.id value (the id of the category)
     },
     include: [
       {
         model: Product, // include the products table (model) and include the attributes of the products table (attributes)
-        attributes: [
-          'id',
-          'product_name',
-          'price',
-          'stock',
-          'category_id'
-        ]
-      }
-    ]
+        attributes: ["id", "product_name", "price", "stock", "category_id"],
+      },
+    ],
   })
-  .then(categoryGetIdData => res.json(categoryGetIdData))
-  .catch(err =>{
-    console.warn(err, 'Status 500 code, theres an error in the JSON (category-routes GET "/:id"');
-    res
-      .status(500)
-      .json(err);
-  })
-});
-
-router.post('/', (req, res) => {
-  // create a new category
-  Category.create({
-    category_name: req.body.category_name // create a new category with the category_name from the request body
-  })
-    .then(categoryPostData => res.json(categoryPostData))
-    .catch(err => {
-      console.warn(err, 'Status 500 code, theres an error in the JSON (category-routes POST "/:id"');
-      res
-        .status(400)
-        .json(err);
+    .then((categoryGetIdData) => res.json(categoryGetIdData))
+    .catch((err) => {
+      console.warn(
+        err,
+        'Status 500 code, theres an error in the JSON (category-routes GET :id)'
+      );
+      res.status(500).json(err);
     });
 });
 
-router.put('/:id', (req, res) => {
-  // update a category by its `id` value
-  Category.update({
-    category_name:req.body.category_name
-  },
-  {
-    where:{
-      id: req.params.id
-    }
+router.post("/", (req, res) => {
+  // create a new category
+  Category.create({
+    category_name: req.body.category_name, // create a new category with the category_name from the request body
   })
-  .then(categoryPutData => {
-    if (!categoryPutData) {
-      res
-        .status(404)
-        .json({ message: 'PUT request 404: No category found with this id' });
-      return;
-    }
-    res
-      .json(categoryPutData);
-  })
-  .catch(err => {
-    console.warn(err, 'Status 500 code, theres an error in the JSON (category-routes PUT "/:id"');
-    res
-      .status(500)
-      .json(err);
-  });
-
+    .then((categoryPostData) => res.json(categoryPostData))
+    .catch((err) => {
+      console.warn(
+        err,
+        'Status 500 code, theres an error in the JSON (category-routes POST :id)'
+      );
+      res.status(400).json(err);
+    });
 });
 
-router.delete('/:id', (req, res) => {
+router.put("/:id", (req, res) => {
+  // update a category by its `id` value
+  Category.update(
+    {
+      category_name: req.body.category_name,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then((categoryPutData) => {
+      if (!categoryPutData) {
+        res
+          .status(404)
+          .json({ message: "PUT request 404: No category found with this id" });
+        return;
+      }
+      res.json(categoryPutData);
+    })
+    .catch((err) => {
+      console.warn(
+        err,
+        'Status 500 code, theres an error in the JSON (category-routes PUT :id)'
+      );
+      res.status(500).json(err);
+    });
+});
+
+router.delete("/:id", (req, res) => {
   // delete a category by its `id` value
   Category.destroy({
-    where:{
-      id: req.params.id
-    }
+    where: {
+      id: req.params.id,
+    },
   })
-  .then(categoryDeleteData => {
-    if (!categoryDeleteData) {
-      res
-        .status(404)
-        .json({ message: 'No comment found with this id!' });
-      return;
-    }
-    res.json(categoryDeleteData);
-  })
-  .catch(err => {
-    console.warn(err, 'Status 500 code, theres an error in the JSON (category-routes DELETE "/:id"');
-    res
-      .status(500)
-      .json(err);
-  });
+    .then((categoryDeleteData) => {
+      if (!categoryDeleteData) {
+        res.status(404).json({ message: "No comment found with this id!" });
+        return;
+      }
+      res.json(categoryDeleteData);
+    })
+    .catch((err) => {
+      console.warn(
+        err,
+        'Status 500 code, theres an error in the JSON (category-routes DELETE :id)'
+      );
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;

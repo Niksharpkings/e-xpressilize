@@ -77,13 +77,18 @@ A UCLAx Object-Relational Mapping (ORM) Challenge: E-commerce Back End using Exp
 ** this will install all the dependencies in the package.json file. make sure your in the root directory of the project)
 = $ <code> npm install <code>
 
-- Step 2: enter in console terminal) go to your .env and change DROP_IT: 'true'
+- Step 2: enter in console terminal)
 = $ <code> npm run start <code>
- 
-  // Third We Will seed the database with some data
-= $ <code> node seeds/index.js <code>
 
-  // Fourth We Will run the server, but before you do make sure to change  DROP_IT: 'false' in the .env file.
+# if you want to have seeded data in the database continue to the next step, otherwise enjoy.
+
+- Step 3: enter in console terminal)
+= $ ctrl + C to exit the server
+ 
+  Step 4: We Will seed the database with some data
+= $ <code> npm run seed <code>
+
+  Step 5: We Will run the server again, but now it will be with seeded data in the database
 = $ <code> npm run start <code>
 
 git add -A
