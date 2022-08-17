@@ -62,3 +62,7 @@ package-lock.json
 .vscode
 .vs
 .env
+todo.env
+both-sql-and-heroku.js
+heroku-jawsdb-server.js
+my-sql-server.js
