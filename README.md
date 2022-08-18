@@ -126,6 +126,7 @@ $ npm run start
 ~~~~~~~~~~~~~
 
 #DEMO
+[![YouTube Video E-xpressilize bootcamp submittion video](http://img.youtube.com/vi/XnZw2CXU3hQ/0.jpg)](https://youtu.be/XnZw2CXU3hQ)
 
 https://drive.google.com/file/d/1KpYQwZIVSEjnEteZM683_LI623qgHHhc/view?usp=sharing
 
