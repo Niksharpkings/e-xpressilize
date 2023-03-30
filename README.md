@@ -6,6 +6,10 @@ A UCLAx Object-Relational Mapping (ORM) Challenge: E-commerce Back End API
 - "Nikita "Nik" Sharpio"
 - "UCLAx starter Code"
 
+## !Warning! Important updated note:
+> Heroku no longer supports free mangosDB mySQL database system since Nov 2022.
+Thus, deployed link and app no longer function unless it's runned thru local host only at the time being. Currently looking for a free public or open souced alternative for hosting this repo live site
+
 ## license:
 - MIT
 
